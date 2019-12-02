@@ -1,0 +1,44 @@
+﻿@page
+@model LeagueDatabase.Pages.Players.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Players</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Players.LastName" class="control-label"></label>
+                <input asp-for="Players.LastName" class="form-control" />
+                <span asp-validation-for="Players.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Players.FirstMidName" class="control-label"></label>
+                <input asp-for="Players.FirstMidName" class="form-control" />
+                <span asp-validation-for="Players.FirstMidName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Players.EnrollmentDate" class="control-label"></label>
+                <input asp-for="Players.EnrollmentDate" class="form-control" />
+                <span asp-validation-for="Players.EnrollmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
