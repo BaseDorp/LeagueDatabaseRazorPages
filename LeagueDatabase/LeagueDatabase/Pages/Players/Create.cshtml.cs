@@ -25,21 +25,25 @@ namespace LeagueDatabase.Pages.Players
         }
 
         [BindProperty]
-        public Player Players { get; set; }
+        public Player Player { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            var emptyStudent = new Player();
+
+            if (await TryUpdateModelAsync<Player>(
+                emptyStudent,
+                "player",   // Prefix for form value.
+                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate, s => s.Username, s => s.MMR))
             {
-                return Page();
+                _context.Player.Add(emptyStudent);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
 
-            _context.Players.Add(Players);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            return Page();
         }
     }
 }

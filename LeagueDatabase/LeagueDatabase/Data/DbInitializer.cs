@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LeagueDatabase.Data;
+﻿using LeagueDatabase.Data;
 using LeagueDatabase.Models;
+using System;
+using System.Linq;
 
 namespace LeagueDatabase.Data
 {
@@ -13,16 +11,15 @@ namespace LeagueDatabase.Data
         {
             context.Database.EnsureCreated();
 
-            // Looks for players in the database
-            if (context.Players.Any())
+            // Look for any students.
+            if (context.Player.Any())
             {
-                // DB has been seeded
-                return;
+                return;   // DB has been seeded
             }
 
-            var players = new Player[]
+            var students = new Player[]
             {
-                new Player{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2019-09-01")},
+                new Player{FirstMidName="Carson",LastName="Alexander",Username="Epic Gamer",MMR=1220},
                 new Player{FirstMidName="Meredith",LastName="Alonso",EnrollmentDate=DateTime.Parse("2017-09-01")},
                 new Player{FirstMidName="Arturo",LastName="Anand",EnrollmentDate=DateTime.Parse("2018-09-01")},
                 new Player{FirstMidName="Gytis",LastName="Barzdukas",EnrollmentDate=DateTime.Parse("2017-09-01")},
@@ -31,27 +28,42 @@ namespace LeagueDatabase.Data
                 new Player{FirstMidName="Laura",LastName="Norman",EnrollmentDate=DateTime.Parse("2018-09-01")},
                 new Player{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse("2019-09-01")}
             };
-            foreach (Player p in players)
+            foreach (Player s in students)
             {
-                context.Players.Add(p);
+                context.Player.Add(s);
             }
             context.SaveChanges();
 
-            var tournaments = new Tournament[]
+            var courses = new Tournament[]
             {
-                new Tournament{TournamentID=1,Title="Ignite"},
-                new Tournament{TournamentID=2,Title="Revenge"}
+                new Tournament{TournamentID=1050,Title="Chemistry",Credits=3},
+                new Tournament{TournamentID=4022,Title="Microeconomics",Credits=3},
+                new Tournament{TournamentID=4041,Title="Macroeconomics",Credits=3},
+                new Tournament{TournamentID=1045,Title="Calculus",Credits=4},
+                new Tournament{TournamentID=3141,Title="Trigonometry",Credits=4},
+                new Tournament{TournamentID=2021,Title="Composition",Credits=3},
+                new Tournament{TournamentID=2042,Title="Literature",Credits=4}
             };
-            foreach (Tournament t in tournaments)
+            foreach (Tournament c in courses)
             {
-                context.Tournaments.Add(t);
+                context.Tournaments.Add(c);
             }
             context.SaveChanges();
 
             var enrollments = new Enrollment[]
             {
-                new Enrollment{StudentID=1,TournamentID=1,Rank=Rank.Diamond},
-                new Enrollment{StudentID=3,TournamentID=2,Rank=Rank.Bronze}
+                new Enrollment{StudentID=1,TournamentID=1050,Rank=Rank.A},
+                new Enrollment{StudentID=1,TournamentID=4022,Rank=Rank.A},
+                new Enrollment{StudentID=1,TournamentID=4041,Rank=Rank.A},
+                new Enrollment{StudentID=2,TournamentID=1045,Rank=Rank.A},
+                new Enrollment{StudentID=2,TournamentID=3141,Rank=Rank.A},
+                new Enrollment{StudentID=2,TournamentID=2021,Rank=Rank.A},
+                new Enrollment{StudentID=3,TournamentID=1050},
+                new Enrollment{StudentID=4,TournamentID=1050},
+                new Enrollment{StudentID=4,TournamentID=4022,Rank=Rank.A},
+                new Enrollment{StudentID=5,TournamentID=4041,Rank=Rank.A},
+                new Enrollment{StudentID=6,TournamentID=1045},
+                new Enrollment{StudentID=7,TournamentID=3141,Rank=Rank.A},
             };
             foreach (Enrollment e in enrollments)
             {

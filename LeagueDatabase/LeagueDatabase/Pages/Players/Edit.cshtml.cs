@@ -21,7 +21,7 @@ namespace LeagueDatabase.Pages.Players
         }
 
         [BindProperty]
-        public Player Players { get; set; }
+        public Player Player { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,48 +30,39 @@ namespace LeagueDatabase.Pages.Players
                 return NotFound();
             }
 
-            Players = await _context.Players.FirstOrDefaultAsync(m => m.ID == id);
+            Player = await _context.Player.FindAsync(id);
 
-            if (Players == null)
+            if (Player == null)
             {
                 return NotFound();
             }
             return Page();
         }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (!ModelState.IsValid)
+            var studentToUpdate = await _context.Player.FindAsync(id);
+
+            if (studentToUpdate == null)
             {
-                return Page();
+                return NotFound();
             }
 
-            _context.Attach(Players).State = EntityState.Modified;
-
-            try
+            if (await TryUpdateModelAsync<Player>(
+                studentToUpdate,
+                "player",
+                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate, s => s.Username, s => s.MMR))
             {
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PlayersExists(Players.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return RedirectToPage("./Index");
             }
 
-            return RedirectToPage("./Index");
+            return Page();
         }
 
-        private bool PlayersExists(int id)
+        private bool PlayerExists(int id)
         {
-            return _context.Players.Any(e => e.ID == id);
+            return _context.Player.Any(e => e.ID == id);
         }
     }
 }

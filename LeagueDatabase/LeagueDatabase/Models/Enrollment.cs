@@ -2,7 +2,8 @@
 {
     public enum Rank
     {
-        Bronze, Silver, Gold, Platinum, Diamond
+       // Bronze, Silver, Gold, Platinum, Diamond, Masters, Challengers
+       A,B,C
     }
 
     public class Enrollment

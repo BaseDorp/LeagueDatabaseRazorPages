@@ -7,3 +7,5 @@ Enrollment => Enrollment
 Courses => Tournaments
 ContosoUniversity.Data.SchoolContext => LeagueDatabase.Data.GameContext
 CourseID => TournamentID
+
+public DbSet<Player> Players { get; set; } => Player not Players

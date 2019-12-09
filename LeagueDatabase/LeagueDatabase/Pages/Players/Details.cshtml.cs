@@ -19,7 +19,7 @@ namespace LeagueDatabase.Pages.Players
             _context = context;
         }
 
-        public Player Players { get; set; }
+        public Player Player { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,13 @@ namespace LeagueDatabase.Pages.Players
                 return NotFound();
             }
 
-            Players = await _context.Players.FirstOrDefaultAsync(m => m.ID == id);
+            Player = await _context.Player
+                .Include(s => s.Enrollments)
+                .ThenInclude(e => e.Tournament)
+                .AsNoTracking()
+        .       FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Players == null)
+            if (Player == null)
             {
                 return NotFound();
             }

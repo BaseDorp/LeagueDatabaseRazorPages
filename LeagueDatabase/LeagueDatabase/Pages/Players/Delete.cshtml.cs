@@ -20,21 +20,35 @@ namespace LeagueDatabase.Pages.Players
         }
 
         [BindProperty]
-        public Player Players { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public Player Player { get; set; }
+        public string ErrorMessage { get; set; }
+        public async Task<IActionResult> OnGetAsync(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Players = await _context.Players.FirstOrDefaultAsync(m => m.ID == id);
+            Player = await _context.Player.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Players == null)
+            if (Player == null)
             {
                 return NotFound();
             }
+            Player = await _context.Player
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ID == id);
+
+            if (Player == null)
+            {
+                return NotFound();
+            }
+
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ErrorMessage = "Delete failed. Try again";
+            }
+
             return Page();
         }
 
@@ -45,15 +59,25 @@ namespace LeagueDatabase.Pages.Players
                 return NotFound();
             }
 
-            Players = await _context.Players.FindAsync(id);
+            Player = await _context.Player.FindAsync(id);
 
-            if (Players != null)
+            if (Player == null)
             {
-                _context.Players.Remove(Players);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
 
-            return RedirectToPage("./Index");
+            try
+            {
+                _context.Player.Remove(Player);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.)
+                return RedirectToAction("./Delete",
+                                     new { id, saveChangesError = true });
+            }
         }
     }
 }

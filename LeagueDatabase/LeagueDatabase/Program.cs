@@ -1,3 +1,5 @@
+using LeagueDatabase.Data;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using LeagueDatabase.Data;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace LeagueDatabase
 {
@@ -17,12 +17,12 @@ namespace LeagueDatabase
         {
             var host = CreateHostBuilder(args).Build();
 
-            CreateHostBuilder(args).Build().Run();
+            CreateDbIfNotExists(host);
 
             host.Run();
         }
 
-        private static void CreateDbIfNoExists(IHost host)
+        private static void CreateDbIfNotExists(IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
