@@ -8,7 +8,7 @@ namespace LeagueDatabase.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TournamentID { get; set; }
         public string Title { get; set; }
-        public int Credits { get; set; }
+        public int Reward { get; set; }
 
         public ICollection<Enrollment> Enrollments { get; set; }
     }

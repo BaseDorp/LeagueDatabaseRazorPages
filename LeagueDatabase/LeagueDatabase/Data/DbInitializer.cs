@@ -36,13 +36,9 @@ namespace LeagueDatabase.Data
 
             var courses = new Tournament[]
             {
-                new Tournament{TournamentID=1050,Title="Chemistry",Credits=3},
-                new Tournament{TournamentID=4022,Title="Microeconomics",Credits=3},
-                new Tournament{TournamentID=4041,Title="Macroeconomics",Credits=3},
-                new Tournament{TournamentID=1045,Title="Calculus",Credits=4},
-                new Tournament{TournamentID=3141,Title="Trigonometry",Credits=4},
-                new Tournament{TournamentID=2021,Title="Composition",Credits=3},
-                new Tournament{TournamentID=2042,Title="Literature",Credits=4}
+                new Tournament{TournamentID=1050,Title="Clash",Reward=50},
+                new Tournament{TournamentID=4022,Title="All Star",Reward=500},
+                new Tournament{TournamentID=4041,Title="Worlds",Reward=10000},
             };
             foreach (Tournament c in courses)
             {
