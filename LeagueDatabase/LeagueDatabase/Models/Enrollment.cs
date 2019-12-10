@@ -9,7 +9,7 @@
     public class Enrollment
     {
         public int EnrollmentID { get; set; }
-        public int TournamentID { get; set; }
+        public int ID { get; set; }
         public int StudentID { get; set; }
         public Rank? Rank { get; set; }
 

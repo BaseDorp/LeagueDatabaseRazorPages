@@ -36,9 +36,9 @@ namespace LeagueDatabase.Data
 
             var courses = new Tournament[]
             {
-                new Tournament{TournamentID=1050,Title="Clash",Reward=50},
-                new Tournament{TournamentID=4022,Title="All Star",Reward=500},
-                new Tournament{TournamentID=4041,Title="Worlds",Reward=10000},
+                new Tournament{ID=1050,Title="Clash",Reward=50},
+                new Tournament{ID=4022,Title="All Star",Reward=500},
+                new Tournament{ID=4041,Title="Worlds",Reward=10000},
             };
             foreach (Tournament c in courses)
             {
@@ -48,18 +48,18 @@ namespace LeagueDatabase.Data
 
             var enrollments = new Enrollment[]
             {
-                new Enrollment{StudentID=1,TournamentID=1050,Rank=Rank.A},
-                new Enrollment{StudentID=1,TournamentID=4022,Rank=Rank.A},
-                new Enrollment{StudentID=1,TournamentID=4041,Rank=Rank.A},
-                new Enrollment{StudentID=2,TournamentID=1045,Rank=Rank.A},
-                new Enrollment{StudentID=2,TournamentID=3141,Rank=Rank.A},
-                new Enrollment{StudentID=2,TournamentID=2021,Rank=Rank.A},
-                new Enrollment{StudentID=3,TournamentID=1050},
-                new Enrollment{StudentID=4,TournamentID=1050},
-                new Enrollment{StudentID=4,TournamentID=4022,Rank=Rank.A},
-                new Enrollment{StudentID=5,TournamentID=4041,Rank=Rank.A},
-                new Enrollment{StudentID=6,TournamentID=1045},
-                new Enrollment{StudentID=7,TournamentID=3141,Rank=Rank.A},
+                new Enrollment{StudentID=1,ID=1050,Rank=Rank.A},
+                new Enrollment{StudentID=1,ID=4022,Rank=Rank.A},
+                new Enrollment{StudentID=1,ID=4041,Rank=Rank.A},
+                new Enrollment{StudentID=2,ID=1045,Rank=Rank.A},
+                new Enrollment{StudentID=2,ID=3141,Rank=Rank.A},
+                new Enrollment{StudentID=2,ID=2021,Rank=Rank.A},
+                new Enrollment{StudentID=3,ID=1050},
+                new Enrollment{StudentID=4,ID=1050},
+                new Enrollment{StudentID=4,ID=4022,Rank=Rank.A},
+                new Enrollment{StudentID=5,ID=4041,Rank=Rank.A},
+                new Enrollment{StudentID=6,ID=1045},
+                new Enrollment{StudentID=7,ID=3141,Rank=Rank.A},
             };
             foreach (Enrollment e in enrollments)
             {

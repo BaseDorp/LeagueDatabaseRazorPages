@@ -14,9 +14,9 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Tournament.TournamentID" class="control-label"></label>
-                <input asp-for="Tournament.TournamentID" class="form-control" />
-                <span asp-validation-for="Tournament.TournamentID" class="text-danger"></span>
+                <label asp-for="Tournament.ID" class="control-label"></label>
+                <input asp-for="Tournament.ID" class="form-control" />
+                <span asp-validation-for="Tournament.ID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Tournament.Title" class="control-label"></label>
@@ -27,6 +27,11 @@
                 <label asp-for="Tournament.Reward" class="control-label"></label>
                 <input asp-for="Tournament.Reward" class="form-control" />
                 <span asp-validation-for="Tournament.Reward" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tournament.PlayerID" class="control-label"></label>
+                <input asp-for="Tournament.PlayerID" class="form-control" />
+                <span asp-validation-for="Tournament.PlayerID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

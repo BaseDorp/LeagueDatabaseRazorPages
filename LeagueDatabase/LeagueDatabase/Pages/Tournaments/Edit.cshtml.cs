@@ -30,7 +30,7 @@ namespace LeagueDatabase.Pages.Tournaments
                 return NotFound();
             }
 
-            Tournament = await _context.Tournaments.FirstOrDefaultAsync(m => m.TournamentID == id);
+            Tournament = await _context.Tournaments.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Tournament == null)
             {
@@ -56,7 +56,7 @@ namespace LeagueDatabase.Pages.Tournaments
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TournamentExists(Tournament.TournamentID))
+                if (!TournamentExists(Tournament.ID))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace LeagueDatabase.Pages.Tournaments
 
         private bool TournamentExists(int id)
         {
-            return _context.Tournaments.Any(e => e.TournamentID == id);
+            return _context.Tournaments.Any(e => e.ID == id);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace LeagueDatabase.Pages.Tournaments
                 return NotFound();
             }
 
-            Tournament = await _context.Tournaments.FirstOrDefaultAsync(m => m.TournamentID == id);
+            Tournament = await _context.Tournaments.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Tournament == null)
             {
